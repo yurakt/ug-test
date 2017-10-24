@@ -7,18 +7,35 @@ import { add, find } from '../actions'
 
 class FindAlbums extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      query: ''
+    }
+  }
+
   add = ({ id, title }) => {
     const { add } = this.props
     add(id, title)
   }
 
   find = () => {
-    const { query, offset, find } = this.props
+    const { offset, find } = this.props
+    const { query } = this.state
     find(query, offset)
+  }
+
+  onChangeQuery = (e) => {
+    console.log('e', e.target.value);
+    this.setState({
+      query: e.target.value
+    });
   }
 
   render() {
     const { albums, yourAlbums, onFindClick } = this.props
+    const { query } = this.state
+
     const albumViews = Object.keys(albums)
       .map((key, i) => {
         const item = albums[key]
@@ -37,8 +54,11 @@ class FindAlbums extends React.Component {
       <div>
         FindAlbums
         <div>
-          <input />
-          <button onClick={this.find}>
+          <input onChange={this.onChangeQuery} />
+          <button
+            onClick={this.find}
+            disabled={!query}
+          >
             Find!
           </button>
         </div>

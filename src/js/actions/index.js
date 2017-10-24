@@ -1,9 +1,6 @@
 import { FIND_REQUEST, FIND_LOADED, ADD, REMOVE } from '../constants'
 
 const fetchData = (query, offset) => {
-  // temp!
-  query = 'shop'
-
   let url = `http://musicbrainz.org/ws/2/release`
   url += `?query=${query}&limit=1&offset=${offset}&fmt=json`
   return fetch(url)
