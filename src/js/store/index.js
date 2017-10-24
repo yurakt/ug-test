@@ -1,10 +1,13 @@
 import { createStore, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import persistState from 'redux-localstorage'
 
 import reducers from '../reducers'
 
 export default createStore(
   reducers,
-  // combineReducers(reducers),
-  compose(applyMiddleware(thunk))
+  compose(
+    applyMiddleware(thunk),
+    persistState()
+  )
 )

@@ -48,6 +48,7 @@ const albums = (state = defaultState, action) => {
         data: action.data,
         offset,
         count,
+        loaded: true,
         albums: {...state.albums, ...albums}
       }
     }

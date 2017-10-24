@@ -33,7 +33,7 @@ class FindAlbums extends React.Component {
   }
 
   render() {
-    const { albums, yourAlbums, onFindClick } = this.props
+    const { albums, yourAlbums, loaded } = this.props
     const { query } = this.state
 
     const albumViews = Object.keys(albums)
@@ -50,6 +50,15 @@ class FindAlbums extends React.Component {
         )
       })
 
+    let noAlbums
+    if (loaded && albumViews.length === 0) {
+      noAlbums = (
+        <div>
+          No albums
+        </div>
+      )
+    }
+
     return (
       <div>
         FindAlbums
@@ -64,6 +73,7 @@ class FindAlbums extends React.Component {
         </div>
         <div>
           {albumViews}
+          {noAlbums}
         </div>
       </div>
     )
@@ -71,10 +81,8 @@ class FindAlbums extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log('state', state)
-
-  const { query, offset, albums, yourAlbums } = state
-  return { query, offset, albums, yourAlbums }
+  const { query, offset, albums, yourAlbums, loaded } = state
+  return { query, offset, albums, yourAlbums, loaded }
 }
 
 const mapDispatchToProps = dispatch => {
