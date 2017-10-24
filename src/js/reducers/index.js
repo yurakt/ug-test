@@ -5,7 +5,7 @@ const defaultState = {
   offset: 0,
   count: 0,
   query: '',
-  albums: [],
+  albums: {},
   yourAlbums: {}
 }
 
@@ -35,11 +35,12 @@ const albums = (state = defaultState, action) => {
         console.log('offset limit!');
       }
 
-      const albums = action.data.releases.map(
-        item => {
+      const albums = action.data.releases.reduce(
+        (acc, item) => {
           const { id, title } = item
-          return { id, title }
-        }
+          acc[id] = { id, title }
+          return acc
+        }, {}
       )
 
       return {
@@ -47,7 +48,7 @@ const albums = (state = defaultState, action) => {
         data: action.data,
         offset,
         count,
-        albums: [...state.albums, ...albums]
+        albums: {...state.albums, ...albums}
       }
     }
 
@@ -55,6 +56,9 @@ const albums = (state = defaultState, action) => {
       console.log('ADD reducer', action);
 
       const { album } = action
+
+      const albums = { ...state.albums }
+      albums[album.id].added = true
 
       const yourAlbums = { ...state.yourAlbums }
       yourAlbums[album.id] = album

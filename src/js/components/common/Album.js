@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Album = ({ id, title, add, remove }) => {
+const Album = ({ id, title, added, add, remove }) => {
   return (
     <div>
       {title} - &nbsp;
       {
-        add &&
+        add && !added &&
         <span onClick={() => { add({ id, title }) }}>
           Add
         </span>
