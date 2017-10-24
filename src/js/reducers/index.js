@@ -1,7 +1,9 @@
 import { FIND_REQUEST, FIND_LOADED } from '../constants'
 
 const defaultState = {
+  limit: 100,
   offset: 0,
+  count: 0,
   query: '',
   albums: []
 }
@@ -11,19 +13,25 @@ const albums = (state = defaultState, action) => {
 
     case FIND_REQUEST:
       console.log('FIND_REQUEST reducer', action);
-      let { offset } = state
-      console.log('offset', offset);
-      offset += 10
-      console.log('offset after', offset);
 
       return {
         ...state,
-        query: action.query,
-        offset
+        query: action.query
       }
 
     case FIND_LOADED:
       console.log('FIND_LOADED reducer', action);
+
+      const { limit } = state
+      let { offset } = action.data
+      const { count } = action.data
+
+      if (offset + limit < count) {
+        offset += limit
+      } else {
+        console.log('offset limit!');
+      }
+      
       const albums = action.data.releases.map(
         item => {
           const { id, title } = item
@@ -34,6 +42,8 @@ const albums = (state = defaultState, action) => {
       return {
         ...state,
         data: action.data,
+        offset,
+        count,
         albums: [...state.albums, ...albums]
       }
 
