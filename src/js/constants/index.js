@@ -1,0 +1,7 @@
+const FIND_REQUEST = 'FIND_REQUEST'
+const FIND_LOADED = 'FIND_LOADED'
+
+export {
+  FIND_REQUEST,
+  FIND_LOADED
+}

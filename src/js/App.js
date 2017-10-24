@@ -8,7 +8,7 @@ import Root from './components/Root'
 import store from './store'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <Provider store={store}>
         <Root />

@@ -1,9 +1,10 @@
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux'
+import { createStore, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 
-// import app from './reducers/app.js';
+import reducers from '../reducers'
 
 export default createStore(
-    // combineReducers({ app }),
-    compose(applyMiddleware(thunk))
-);
+  reducers,
+  // combineReducers(reducers),
+  compose(applyMiddleware(thunk))
+)
