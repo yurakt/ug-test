@@ -3,13 +3,18 @@ import { connect } from 'react-redux'
 
 import Album from './common/Album'
 
-import { find } from '../actions'
+import { add, find } from '../actions'
 
 class FindAlbums extends React.Component {
 
+  add = ({ id, title }) => {
+    const { add } = this.props
+    add(id, title)
+  }
+
   find = () => {
-    const { query, offset, onFindClick } = this.props
-    onFindClick(query, offset)
+    const { query, offset, find } = this.props
+    find(query, offset)
   }
 
   render() {
@@ -17,7 +22,7 @@ class FindAlbums extends React.Component {
     const albumViews = albums.map(
       (item, i) => {
         return (
-          <Album key={i} {...item} />
+          <Album key={i} add={this.add} {...item} />
         )
       }
     )
@@ -48,8 +53,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFindClick: (query, offset) => {
+    find: (query, offset) => {
       dispatch(find(query, offset))
+    },
+    add: (id, title) => {
+      dispatch(add(id, title))
     }
   }
 }

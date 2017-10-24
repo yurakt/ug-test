@@ -1,11 +1,12 @@
-import { FIND_REQUEST, FIND_LOADED } from '../constants'
+import { FIND_REQUEST, FIND_LOADED, ADD, REMOVE } from '../constants'
 
 const defaultState = {
   limit: 100,
   offset: 0,
   count: 0,
   query: '',
-  albums: []
+  albums: [],
+  yourAlbums: {}
 }
 
 const albums = (state = defaultState, action) => {
@@ -31,7 +32,7 @@ const albums = (state = defaultState, action) => {
       } else {
         console.log('offset limit!');
       }
-      
+
       const albums = action.data.releases.map(
         item => {
           const { id, title } = item
@@ -45,6 +46,26 @@ const albums = (state = defaultState, action) => {
         offset,
         count,
         albums: [...state.albums, ...albums]
+      }
+
+    case ADD:
+      console.log('ADD reducer', action);
+
+      const { album } = action
+
+      const yourAlbums = { ...state.yourAlbums }
+      yourAlbums[album.id] = album
+
+      return {
+        ...state,
+        yourAlbums
+      }
+
+    case REMOVE:
+      console.log('REMOVE reducer', action);
+
+      return {
+        ...state
       }
 
     default:

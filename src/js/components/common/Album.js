@@ -1,13 +1,20 @@
 import React from 'react'
 
-const Album = ({ id, title, isFavorite = false }) => {
+const Album = ({ id, title, add, remove }) => {
   return (
     <div>
       {id} - {title}&nbsp;
       {
-        isFavorite
-          ? <span>Del</span>
-          : <span>Add</span>
+        add &&
+        <span onClick={() => { add({ id, title }) }}>
+          Add
+        </span>
+      }
+      {
+        remove &&
+        <span onClick={() => { remove({ id, title }) }}>
+          Del
+        </span>
       }
     </div>
   )

@@ -1,4 +1,4 @@
-import { FIND_REQUEST, FIND_LOADED } from '../constants'
+import { FIND_REQUEST, FIND_LOADED, ADD } from '../constants'
 
 const fetchData = (query, offset) => {
   // temp!
@@ -22,6 +22,14 @@ const find = (query, offset) => {
   }
 }
 
+const add = (id, title) => {
+  return {
+    type: ADD,
+    album: { id, title }
+  }
+}
+
 export {
-  find
+  find,
+  add
 }

@@ -1,7 +1,11 @@
 const FIND_REQUEST = 'FIND_REQUEST'
 const FIND_LOADED = 'FIND_LOADED'
+const ADD = 'ADD'
+const REMOVE = 'REMOVE'
 
 export {
   FIND_REQUEST,
-  FIND_LOADED
+  FIND_LOADED,
+  ADD,
+  REMOVE
 }
