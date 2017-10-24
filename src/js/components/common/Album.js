@@ -3,7 +3,7 @@ import React from 'react'
 const Album = ({ id, title, add, remove }) => {
   return (
     <div>
-      {id} - {title}&nbsp;
+      {title} - &nbsp;
       {
         add &&
         <span onClick={() => { add({ id, title }) }}>

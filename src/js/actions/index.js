@@ -1,4 +1,4 @@
-import { FIND_REQUEST, FIND_LOADED, ADD } from '../constants'
+import { FIND_REQUEST, FIND_LOADED, ADD, REMOVE } from '../constants'
 
 const fetchData = (query, offset) => {
   // temp!
@@ -29,7 +29,15 @@ const add = (id, title) => {
   }
 }
 
+const remove = (id, title) => {
+  return {
+    type: REMOVE,
+    album: { id, title }
+  }
+}
+
 export {
   find,
-  add
+  add,
+  remove
 }

@@ -12,15 +12,17 @@ const defaultState = {
 const albums = (state = defaultState, action) => {
   switch (action.type) {
 
-    case FIND_REQUEST:
+    case FIND_REQUEST: {
       console.log('FIND_REQUEST reducer', action);
 
       return {
         ...state,
         query: action.query
       }
+    }
 
-    case FIND_LOADED:
+    case FIND_LOADED: {
+
       console.log('FIND_LOADED reducer', action);
 
       const { limit } = state
@@ -47,8 +49,9 @@ const albums = (state = defaultState, action) => {
         count,
         albums: [...state.albums, ...albums]
       }
+    }
 
-    case ADD:
+    case ADD: {
       console.log('ADD reducer', action);
 
       const { album } = action
@@ -60,13 +63,21 @@ const albums = (state = defaultState, action) => {
         ...state,
         yourAlbums
       }
+    }
 
-    case REMOVE:
+    case REMOVE: {
       console.log('REMOVE reducer', action);
 
+      const { album } = action
+
+      const yourAlbums = { ...state.yourAlbums }
+      delete yourAlbums[album.id]
+
       return {
-        ...state
+        ...state,
+        yourAlbums
       }
+    }
 
     default:
       return state
