@@ -6,7 +6,13 @@ import Album from './common/Album'
 import { find } from '../actions'
 
 class FindAlbums extends React.Component {
-  render () {
+
+  find = () => {
+    const { query, offset, onFindClick } = this.props
+    onFindClick(query, offset)
+  }
+
+  render() {
     const { albums, onFindClick } = this.props
     const albumViews = albums.map(
       (item, i) => {
@@ -21,7 +27,7 @@ class FindAlbums extends React.Component {
         FindAlbums
         <div>
           <input />
-          <button onClick={onFindClick}>
+          <button onClick={this.find}>
             Find!
           </button>
         </div>
@@ -35,15 +41,15 @@ class FindAlbums extends React.Component {
 
 const mapStateToProps = state => {
   console.log('state', state)
-  return {
-    albums: state.albums || []
-  }
+
+  const { query, offset, albums } = state
+  return { query, offset, albums }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFindClick: (query) => {
-      dispatch(find(query))
+    onFindClick: (query, offset) => {
+      dispatch(find(query, offset))
     }
   }
 }
