@@ -1,7 +1,7 @@
 import { FIND_REQUEST, FIND_LOADED, ADD, REMOVE } from '../constants'
 
 const defaultState = {
-  limit: 100,
+  limit: 10,
   offset: 0,
   count: 0,
   query: '',
