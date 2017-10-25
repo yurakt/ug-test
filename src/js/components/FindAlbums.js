@@ -53,15 +53,17 @@ class FindAlbums extends React.Component {
     let noAlbums
     if (loaded && albumViews.length === 0) {
       noAlbums = (
-        <div>
+        <div className="albums__body_empty">
           No albums
         </div>
       )
     }
 
     return (
-      <div>
-        FindAlbums
+      <div className="albums root__find-albums">
+        <div className="albums__title">
+          Find Albums
+        </div>
         <div>
           <input onChange={this.onChangeQuery} />
           <button
@@ -71,7 +73,7 @@ class FindAlbums extends React.Component {
             Find!
           </button>
         </div>
-        <div>
+        <div className="albums__body">
           {albumViews}
           {noAlbums}
         </div>

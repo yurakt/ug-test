@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../less/App.css'
 
 import { Provider } from 'react-redux'
 

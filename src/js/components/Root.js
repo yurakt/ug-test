@@ -5,7 +5,7 @@ import FindAlbums from './FindAlbums'
 
 const Root = () => {
   return (
-    <div>
+    <div className="root">
       <YourAlbums />
       <FindAlbums />
     </div>

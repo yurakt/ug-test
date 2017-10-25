@@ -2,17 +2,25 @@ import React from 'react'
 
 const Album = ({ id, title, added, add, remove }) => {
   return (
-    <div>
-      {title} - &nbsp;
+    <div className="album">
+      <div className="album__title">
+        {title}
+      </div>
       {
         add && !added &&
-        <span onClick={() => { add({ id, title }) }}>
+        <span
+          className="album__button"
+          onClick={() => { add({ id, title }) }}
+        >
           Add
         </span>
       }
       {
         remove &&
-        <span onClick={() => { remove({ id, title }) }}>
+        <span
+          className="album__button"
+          onClick={() => { remove({ id, title }) }}
+        >
           Del
         </span>
       }
