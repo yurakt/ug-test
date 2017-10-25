@@ -8,6 +8,6 @@ export default createStore(
   reducers,
   compose(
     applyMiddleware(thunk),
-    persistState()
+    persistState(undefined, { key: 'UltimateGuitar' })
   )
 )
